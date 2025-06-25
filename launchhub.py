@@ -2,6 +2,9 @@
 
 import argparse
 import sys
+from utils.generator import generate_html_project
+
+
 
 def main():
     parser = argparse.ArgumentParser(
@@ -23,8 +26,13 @@ def main():
     args = parser.parse_args()
 
     if args.command == "init":
-        print(f"[LaunchHub] Initializing project with stack: {args.stack}")
-        # Future logic here
+        stack = args.stack.lower()
+        if stack == "html":
+            project_name = input("Enter project name: ").strip()
+            generate_html_project(project_name)
+        else:
+            print(f"[!] Stack '{stack}' is not supported in this version.")
+
     elif args.command == "list":
         print("[LaunchHub] List function not implemented yet.")
     elif args.command == "help" or args.command is None:
