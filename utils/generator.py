@@ -1,6 +1,8 @@
 import os
 import shutil
 from pathlib import Path
+from utils.template_engine import parse_and_replace_tokens
+
 
 def generate_html_project(project_name, base_path="projects"):
     current_dir = Path.cwd()
@@ -26,19 +28,26 @@ def generate_html_project(project_name, base_path="projects"):
         # Replace {{project_name}} in index.html
         index_file = output_dir / "index.html"
         if index_file.exists():
-            index_file.write_text(index_file.read_text().replace("{{project_name}}", project_name))
+            parse_and_replace_tokens(index_file, context={"project_name": project_name})
+
 
         # Replace {{project_name}} in assets/js/main.js
         js_file = output_dir / "assets" / "js" / "main.js"
         if js_file.exists():
-            js_file.write_text(js_file.read_text().replace("{{project_name}}", project_name))
+            # js_file.write_text(js_file.read_text().replace("{{project_name}}", project_name))
+            parse_and_replace_tokens(js_file, context={"project_name": project_name})
 
         # Replace {{project_name}} in README.md (optional)
         readme_file = output_dir / "README.md"
         if readme_file.exists():
-            readme_file.write_text(readme_file.read_text().replace("{{project_name}}", project_name))
+            # readme_file.write_text(readme_file.read_text().replace("{{project_name}}", project_name))
+            parse_and_replace_tokens(readme_file, context={"project_name": project_name})
 
         print(f"[✅] Project '{project_name}' created at: {output_dir}")
+        return output_dir
+
 
     except Exception as e:
         print(f"[ERROR] Project generation failed: {e}")
+        return None
+

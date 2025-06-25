@@ -3,10 +3,15 @@
 import argparse
 import sys
 from utils.generator import generate_html_project
+from utils.tracker import init_db, log_project, list_projects
+
 
 
 
 def main():
+    init_db()
+    
+
     parser = argparse.ArgumentParser(
         description="LaunchHub – Project Scaffolding Engine"
     )
@@ -29,12 +34,16 @@ def main():
         stack = args.stack.lower()
         if stack == "html":
             project_name = input("Enter project name: ").strip()
-            generate_html_project(project_name)
+            output_dir = generate_html_project(project_name)  # ✅ MODIFY to return path
+            if output_dir:  # only log if success
+                log_project(project_name, stack, output_dir)
         else:
             print(f"[!] Stack '{stack}' is not supported in this version.")
 
     elif args.command == "list":
-        print("[LaunchHub] List function not implemented yet.")
+        # print("[LaunchHub] List function not implemented yet.")
+        list_projects()
+
     elif args.command == "help" or args.command is None:
         parser.print_help()
     else:
@@ -43,4 +52,5 @@ def main():
         sys.exit(1)
 
 if __name__ == "__main__":
+    
     main()

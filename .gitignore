@@ -1,0 +1,38 @@
+# Bytecode
+__pycache__/
+*.py[cod]
+*.pyo
+
+# SQLite DB
+launchhub.db
+
+# OS metadata
+.DS_Store
+Thumbs.db
+
+# Virtual environments (if added later)
+env/
+venv/
+.venv/
+
+# IDE configs
+.vscode/
+.idea/
+
+# Test artifacts
+*.log
+*.testout
+coverage/
+
+# Python packaging
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# System folders
+*.swp
+*.swo
+
+# Hidden project folders
+projects/

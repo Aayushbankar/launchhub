@@ -1,100 +1,104 @@
-Confirmed.
-Below is your updated `README.md` reflecting:
-
-* ✅ Completion of **Increment 1**
-* 🔜 Roadmap for **Increment 2**
-* 📦 Features now supported in LaunchHub
-
-This README follows a **professional tone** and prepares your repo for presentation to contributors, recruiters, or yourself later.
-
----
-
-## ✅ Updated `README.md`
-
-````markdown
 # 🚀 LaunchHub – Self-Bootstrapping Devstack Engine
 
-LaunchHub is a Python-based CLI engine that generates complete, deployment-ready boilerplate for common project stacks (HTML, Flask, CLI, etc.) with minimal configuration.
-
-Built to eliminate repetitive setup and enforce clean architecture for real-world development.
+LaunchHub is a Python-based CLI tool that generates complete project boilerplates across multiple stacks like HTML, Flask, and Python CLI. It’s designed for real-world developer workflows — fast, structured, repeatable.
 
 ---
 
-## 📦 Supported Stacks (v0.1)
+## 📦 Supported Stacks (v0.3)
 
-- `html` → Generates static HTML/CSS/JS frontend scaffold  
-  Includes:  
-  - `index.html` with injected project name  
-  - `assets/css/main.css`, `assets/js/main.js`  
-  - Auto-generated `.env`, `.gitignore`, `README.md`
+- `html` → Generates a static frontend boilerplate  
+- `flask` → Coming next  
+- `cli` → Coming next  
 
 ---
 
-## ✅ Completed Features (Increment 1)
+## ✅ Completed Features
 
-- `launchhub init html` → Fully working
-- Project folder created under `/projects/`
-- HTML templates copied from internal `/templates/html/`
-- Placeholder `{{project_name}}` dynamically injected
-- Base files auto-generated:
-  - `.env` → defaults to `ENV=development`
-  - `.gitignore` → ignores envs and Python cache
-  - `README.md` → pre-filled with project name
+### Increment 1: HTML Generator  
+- Command: `launchhub init html`
+- Creates:
+  - `index.html`, `assets/css/main.css`, `assets/js/main.js`
+  - `.env`, `.gitignore`, `README.md`
+- Auto-injects `{{project_name}}`
 
 ---
 
-## 🔜 Next Phase (Increment 2)
+### Increment 2: Templating Engine  
+- Dynamic token injection in any file  
+- Supports:
+  - `{{project_name}}`, `{{author}}`, `{{date}}`, etc.  
+- Filters out unsafe tokens (e.g., Jinja2 `url_for()`)
 
-> **Custom Placeholder Injection Engine**
+---
 
-- Allow user-defined fields: `{{author}}`, `{{date}}`, `{{license}}`
-- Prompt at runtime (e.g., `Enter project author:`)
-- Inject into all files that use these tokens
-- Template files become dynamic, reusable, and stack-agnostic
+### Increment 2T: Test Suite  
+- Unit test for template engine  
+- Uses `unittest` + `tempfile`  
+- Ensures replacements are correct and safe
+
+---
+
+### Increment 3: Project Tracker  
+- Local SQLite DB logs:
+  - Project name  
+  - Stack used  
+  - Output path  
+  - Timestamp  
+- CLI Command: `launchhub list` shows log of all generated projects
 
 ---
 
 ## 🛠 Usage
 
+### Create Project
 ```bash
 python3 launchhub.py init html
 ````
 
 Then:
 
+```
+Enter project name: my-site
+Enter value for 'author': Aayush
+Enter value for 'date': 2025-06-26
+```
+
+### List All Projects
+
 ```bash
-Enter project name: portfolio
-```
-
-Project generated at:
-
-```
-projects/portfolio/
+python3 launchhub.py list
 ```
 
 ---
 
-## 🧠 Why LaunchHub?
+## 🔜 Next Milestone
 
-* Standardizes your project structure
-* Speeds up idea-to-prototype cycle
-* Helps you think like a system engineer, not a script writer
-* Designed for real-world use and long-term reusability
+### Increment 4 (Upcoming):
+
+* Flask stack with:
+
+  * `app.py`, `/templates`, `/static`
+  * Jinja2-compatible template that skips token parsing
+* CLI stack with:
+
+  * `main.py`, `argparse`, help banners
+* UI/UX templates for all 3
 
 ---
 
-## 🧪 In Development
+## 🧠 Philosophy
 
-* Flask and CLI stack support
-* Project tracking database
-* Git auto-initialization
-* Template plugin system
+* No magic. No bloat.
+* Local-first, developer-owned scaffolding engine
+* Every file is real. Every feature is tested.
+* Built to teach architecture, not just automate it.
 
 ---
 
 ## 👤 Author
 
-Built by Aayush Bankar
-Passionate about system design, automation, and building like it matters.
+Crafted by Aayush Bankar
+Driven by systems thinking, autonomy, and the will to master.
 
 ```
+
