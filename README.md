@@ -1,69 +1,73 @@
+
 # 🚀 LaunchHub – Self-Bootstrapping Devstack Engine
 
 LaunchHub is a Python-based CLI tool that generates complete project boilerplates across multiple stacks like HTML, Flask, and Python CLI. It’s designed for real-world developer workflows — fast, structured, repeatable.
 
 ---
 
-## 📦 Supported Stacks (v0.3)
+## 📦 Supported Stacks (v0.4)
 
-- `html` → Generates a static frontend boilerplate  
-- `flask` → Coming next  
-- `cli` → Coming next  
+- `html` → Static frontend scaffold (HTML/CSS/JS)
+- `flask` → Flask web app scaffold with Jinja2 templates
+- `cli` → (Coming soon)
 
 ---
 
-## ✅ Completed Features
+## ✅ Completed Increments
 
 ### Increment 1: HTML Generator  
 - Command: `launchhub init html`
-- Creates:
-  - `index.html`, `assets/css/main.css`, `assets/js/main.js`
-  - `.env`, `.gitignore`, `README.md`
-- Auto-injects `{{project_name}}`
+- Creates `index.html`, `assets/css/`, `assets/js/`, `.env`, `.gitignore`
+- Injects `{{project_name}}`, `{{author}}`, etc.
 
 ---
 
-### Increment 2: Templating Engine  
-- Dynamic token injection in any file  
-- Supports:
-  - `{{project_name}}`, `{{author}}`, `{{date}}`, etc.  
-- Filters out unsafe tokens (e.g., Jinja2 `url_for()`)
+### Increment 2: Template Engine  
+- Parses any file for placeholders like `{{token}}`
+- Prompts for missing values at runtime
+- Replaces them safely in non-Jinja files
 
 ---
 
-### Increment 2T: Test Suite  
-- Unit test for template engine  
-- Uses `unittest` + `tempfile`  
-- Ensures replacements are correct and safe
+### Increment 2T: Unit Testing  
+- Built-in test using `unittest` + `tempfile`
+- Validates token injection logic
 
 ---
 
 ### Increment 3: Project Tracker  
-- Local SQLite DB logs:
-  - Project name  
-  - Stack used  
-  - Output path  
-  - Timestamp  
-- CLI Command: `launchhub list` shows log of all generated projects
+- Logs each project into `launchhub.db`
+- Records: name, stack, path, timestamp
+- Command: `launchhub list`
+
+---
+
+### Increment 4A: Flask Stack Generator  
+- Command: `launchhub init flask`
+- Generates:
+  - `app.py` with route logic
+  - `templates/index.html` (Jinja2-safe)
+  - `static/css/style.css`, `static/js/script.js`
+  - `.env`, `.gitignore`, `README.md`
+- Token injection applied to `app.py`, `.env`, etc.
+- Jinja2 files skipped to preserve runtime logic
 
 ---
 
 ## 🛠 Usage
 
-### Create Project
+### Generate HTML Project
 ```bash
 python3 launchhub.py init html
 ````
 
-Then:
+### Generate Flask Project
 
-```
-Enter project name: my-site
-Enter value for 'author': Aayush
-Enter value for 'date': 2025-06-26
+```bash
+python3 launchhub.py init flask
 ```
 
-### List All Projects
+### List Projects
 
 ```bash
 python3 launchhub.py list
@@ -71,34 +75,18 @@ python3 launchhub.py list
 
 ---
 
-## 🔜 Next Milestone
+## 🔜 Next Increments
 
-### Increment 4 (Upcoming):
-
-* Flask stack with:
-
-  * `app.py`, `/templates`, `/static`
-  * Jinja2-compatible template that skips token parsing
-* CLI stack with:
-
-  * `main.py`, `argparse`, help banners
-* UI/UX templates for all 3
-
----
-
-## 🧠 Philosophy
-
-* No magic. No bloat.
-* Local-first, developer-owned scaffolding engine
-* Every file is real. Every feature is tested.
-* Built to teach architecture, not just automate it.
+* CLI stack generator (argparse-based)
+* Git auto-init + remote push
+* Export logs to `.csv` / `.json`
+* Plugin-based stack system
 
 ---
 
 ## 👤 Author
 
 Crafted by Aayush Bankar
-Driven by systems thinking, autonomy, and the will to master.
+Structured. Automated. Developer-first.
 
-
-
+```
