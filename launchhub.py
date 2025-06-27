@@ -2,8 +2,10 @@
 
 import argparse
 import sys
-from utils.generator import generate_html_project
+# from utils.generator import generate_html_project
 from utils.tracker import init_db, log_project, list_projects
+from utils.generator import generate_html_project, generate_flask_project
+
 
 
 
@@ -36,6 +38,11 @@ def main():
             project_name = input("Enter project name: ").strip()
             output_dir = generate_html_project(project_name)  # ✅ MODIFY to return path
             if output_dir:  # only log if success
+                log_project(project_name, stack, output_dir)
+        elif stack == "flask":
+            project_name = input("Enter project name: ").strip()
+            output_dir = generate_flask_project(project_name)
+            if output_dir:
                 log_project(project_name, stack, output_dir)
         else:
             print(f"[!] Stack '{stack}' is not supported in this version.")
