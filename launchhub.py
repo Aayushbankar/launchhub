@@ -4,7 +4,9 @@ import argparse
 import sys
 # from utils.generator import generate_html_project
 from utils.tracker import init_db, log_project, list_projects
-from utils.generator import generate_html_project, generate_flask_project
+# from utils.generator import generate_html_project, generate_flask_projectfrom utils.generator import generate_html_project, generate_flask_project, generate_cli_project
+from utils.generator import generate_html_project, generate_flask_project, generate_cli_project
+
 
 
 
@@ -30,6 +32,7 @@ def main():
     # help command
     help_parser = subparsers.add_parser('help', help='Show usage info')
     
+    
     args = parser.parse_args()
 
     if args.command == "init":
@@ -44,6 +47,12 @@ def main():
             output_dir = generate_flask_project(project_name)
             if output_dir:
                 log_project(project_name, stack, output_dir)
+        elif stack == "cli":
+            project_name = input("Enter project name: ").strip()
+            output_dir = generate_cli_project(project_name)
+            if output_dir:
+                log_project(project_name, stack, output_dir)
+
         else:
             print(f"[!] Stack '{stack}' is not supported in this version.")
 

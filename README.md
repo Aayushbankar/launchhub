@@ -75,14 +75,26 @@ python3 launchhub.py list
 
 ---
 
-## 🔜 Next Increments
+#### Add to **Supported Stacks**
 
-* CLI stack generator (argparse-based)
-* Git auto-init + remote push
-* Export logs to `.csv` / `.json`
-* Plugin-based stack system
+```markdown
+- `cli` → Python CLI tool scaffold with `argparse`
+```
 
 ---
+
+#### Add New Increment to **Completed Increments**
+
+```markdown
+### Increment 4B: CLI Stack Generator  
+- Command: `launchhub init cli`
+- Generates:
+  - `main.py` with `argparse` logic
+  - `.env`, `.gitignore`, `README.md`
+- Token injection into all files
+- Project auto-logged in DB
+```
+
 
 ## 👤 Author
 
